@@ -156,7 +156,7 @@ namespace Editor {
       options.scenes = scenes;
       options.target = BuildTarget.Android;
       options.options = BuildOptions.None;
-      options.locationPathName = "artifacts/build.apk";
+      options.locationPathName = "artifacts/buildka.apk";
       BuildPipeline.BuildPlayer(options);
     }
 
