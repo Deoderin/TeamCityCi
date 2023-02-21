@@ -148,7 +148,7 @@ namespace Editor {
     }
 
     private static void BuildAndroid (string [] scenes) {
-      EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+      //EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
 
       var options = new BuildPlayerOptions();
 
