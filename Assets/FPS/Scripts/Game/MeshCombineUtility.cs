@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder;
 using UnityEngine.Rendering;
 
 namespace Unity.FPS.Game
@@ -92,11 +91,6 @@ namespace Unity.FPS.Game
                 }
 
                 // Destroy probuilder component if present
-                ProBuilderMesh pbm = meshRenderer.GetComponent<ProBuilderMesh>();
-                if (pbm)
-                {
-                    GameObject.Destroy(pbm);
-                }
 
                 switch (disposeMethod)
                 {
