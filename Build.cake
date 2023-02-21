@@ -14,10 +14,10 @@ Task("Build-Android")
     .IsDependentOn("Clean-Artifacts")
     .Does(() =>
 {
-    UnityEditor(2022, 1,
+    UnityEditor(2021, 3,
         new UnityEditorArguments
         {
-            ExecuteMethod = "Editor.Builder.BuildVr",
+            ExecuteMethod = "Editor.Builder.BuildAndroidTelephone",
             LogFile = "./artifacts/unity.log",
         },
         new UnityEditorSettings

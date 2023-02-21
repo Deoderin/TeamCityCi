@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SubProcessor;
 using UnityEditor;
 using UnityEditor.Build;
-using UnityEditor.Build.Reporting;
 
 namespace Editor {
   public class Builder : IPreprocessBuild {
@@ -114,7 +112,6 @@ namespace Editor {
 
     [MenuItem("Builds/BuildAndroidTelephone")]
     public static void BuildAndroidTelephone() {
-      SetVrPlatform(false);
       BuildAndroid(EditorBuildSettingsScene.GetActiveSceneList(EditorBuildSettings.scenes));
     }
 
@@ -125,15 +122,13 @@ namespace Editor {
       SetVrPlatform(true);
 
       //EditorCoroutineUtility.StartCoroutineOwnerless(LevelsReserializer.ProcessScenes(activeSceneList.Select(scene => AssetDatabase.LoadAssetAtPath<SceneAsset>(scene)).ToList(), true));
-      LevelsReserializer.ProcessScenes(
-        activeSceneList.Select(scene => AssetDatabase.LoadAssetAtPath<SceneAsset>(scene)).ToList(), true);
+      //LevelsReserializer.ProcessScenes(activeSceneList.Select(scene => AssetDatabase.LoadAssetAtPath<SceneAsset>(scene)).ToList(), true);
       //yield return new WaitUntil(() => LevelsReserializer.LoadingPrefabComplete);
 
       BuildAndroid(activeSceneList);
 
       //yield return new WaitUntil(() => BuildComlete);
-      LevelsReserializer.ProcessScenes(
-        activeSceneList.Select(scene => AssetDatabase.LoadAssetAtPath<SceneAsset>(scene)).ToList(), false);
+      //LevelsReserializer.ProcessScenes(activeSceneList.Select(scene => AssetDatabase.LoadAssetAtPath<SceneAsset>(scene)).ToList(), false);
       //EditorCoroutineUtility.StartCoroutineOwnerless(LevelsReserializer.ProcessScenes(activeSceneList.Select(scene => AssetDatabase.LoadAssetAtPath<SceneAsset>(scene)).ToList(), false));
     }
 
@@ -160,19 +155,12 @@ namespace Editor {
       options.scenes = scenes;
       options.target = BuildTarget.Android;
       options.options = BuildOptions.None;
-      // options.locationPathName = "builds/" + buildName;
-      options.locationPathName = "build/Android/build.apk";
+      options.locationPathName = "artifacts/build.apk";
       BuildPipeline.BuildPlayer(options);
-    }
-
-    private static BuildPlatform FindBuildTypeSetting() {
-      return (BuildPlatform)AssetDatabase.LoadAssetAtPath(PathToSettings, typeof(BuildPlatform));
     }
 
     private static void SetVrPlatform (bool isVr) {
       AssetDatabase.StartAssetEditing();
-
-      FindBuildTypeSetting().isVr = isVr;
 
       AssetDatabase.SaveAssets();
       AssetDatabase.StopAssetEditing();

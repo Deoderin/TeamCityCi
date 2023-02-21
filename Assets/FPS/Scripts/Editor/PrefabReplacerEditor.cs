@@ -7,7 +7,7 @@ namespace Unity.FPS.EditorExt
 {
 
     [CustomEditor(typeof(PrefabReplacer))]
-    public class PrefabReplacerEditor : Editor
+    public class PrefabReplacerEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
